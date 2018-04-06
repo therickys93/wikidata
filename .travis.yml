@@ -15,7 +15,6 @@ deploy:
   skip_cleanup: true
   api_key:
     secure: mKxdufk3C3sOoCD11/+LtcD+DgQZa2qDIH5AXBjESJ7MJ3GKZkA/TfJBMiKBtjERw7PGKGGAFnHOQF/+abM35Tj4UZ/in43Q2nql29GGsEAYTuPqXPRaMnlbc8mkl3jF9Jac5ungCpjaBqZgQiK3DDLCUd6KrdKvZUR4jWxJ+sYIr5turqfGxLoDSbbTMieYc9Ynrfnc4Ci2zM/AWAnSXDQ0xpbxUy2Tw7NDGJMinFyFt1hJkAYAYEdsjKk3Sd8D+HmE0UoomzEpz1xYsBvZFKDUt+v9vnesuy/me7RWchCRH7/8HNcYwFCHNJvBXJ/tMPJEMl4GPFOtXWhDBiDwz4hljiUiKLUkoglKbn/wamBhLQDi1MFgWqNL0Og53wIt6/f4cvaIgPpfFZ43WLoYAkTZ3S2NClx0iU6tF8d9Z58edz9sbvo0JiG06BPZibnE3ysuEd5W3Mxtjg+glkoKClSMZghPEwwY6MDCL1ktt/JxQToFa+ydUaNMmyUI9fdlJfqUglbCMv9uSMukEqSVzuB8gnBKMuQCRaiVBmQ/1UAyHyvNc7BLF7EgFpl6qbA9tDUC+k2twpuvakYqu7hheP95Z4wAzesee7tbgLCcFjek2JUuMq5aN2BgHy7jTJfDytMw5OoJIUvg44ME+WF2T7TONb4CE/1FGa8hhi4x0rU=
-  file: ''
   on:
     branch: master
     repo: therickys93/wikidata
