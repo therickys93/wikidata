@@ -1,0 +1,12 @@
+#!/bin/sh
+
+set -v
+redis-dump -h $REDIS --json > wikiredisdump.json
+ncftp <<END_OF_SESSION
+open -u $FTP_USERNAME -p $FTP_PASSWORD $FTP_SERVER
+dir
+rm -f wikiredisdump.json
+dir
+put wikiredisdump.json
+bye
+END_OF_SESSION
