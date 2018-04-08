@@ -2,7 +2,14 @@ version: '2'
 
 services:
     redis:
-        image: redis
+        image: redis:alpine
+        networks:
+            - backbone
+
+    postgres:
+        image: postgres:alpine
+        environment:
+            - POSTGRES_PASSWORD=example
         networks:
             - backbone
 
@@ -13,6 +20,10 @@ services:
             - FTP_USERNAME=<your_username>
             - FTP_PASSWORD=<your_password>
             - REDIS=redis
+            - POSTGRES=postgres
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=example
+            - POSTGRES_DB=postgres
         networks: 
             - backbone
 

@@ -1,12 +1,13 @@
 #!/bin/sh
 
-set -v
+# set -v
 redis-dump -h $REDIS --json > wikiredisdump.json
+PGPASSWORD=$POSTGRES_PASSWORD pg_dump -U $POSTGRES_USER -d $POSTGRES_DB -h $POSTGRES > wikipostgresdump.sql
 ncftp <<END_OF_SESSION
 open -u $FTP_USERNAME -p $FTP_PASSWORD $FTP_SERVER
-dir
 rm -f wikiredisdump.json
-dir
-put wikiredisdump.json
+rm -f wikipostgresdump.sql
+put wikiredisdump.json wikipostgresdump.sql
 bye
 END_OF_SESSION
+echo "Fatto!"
