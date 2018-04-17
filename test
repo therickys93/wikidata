@@ -1,13 +1,12 @@
 #!/bin/sh
 
-# set -v
-redis-dump -h $REDIS --json > wikiredisdump.json
-PGPASSWORD=$POSTGRES_PASSWORD pg_dump -U $POSTGRES_USER -d $POSTGRES_DB -h $POSTGRES > wikipostgresdump.sql
+# set -
+NOW=$(date +"%d_%B_%Y_%H_%M_%S")
+redis-dump -h $REDIS --json > wikiredisdump_$NOW.json
+PGPASSWORD=$POSTGRES_PASSWORD pg_dump -U $POSTGRES_USER -d $POSTGRES_DB -h $POSTGRES > wikipostgresdump_$NOW.sql
 ncftp <<END_OF_SESSION
 open -u $FTP_USERNAME -p $FTP_PASSWORD $FTP_SERVER
-rm -f wikiredisdump.json
-rm -f wikipostgresdump.sql
-put wikiredisdump.json wikipostgresdump.sql
+put wikiredisdump_$NOW.json wikipostgresdump_$NOW.sql
 bye
 END_OF_SESSION
 echo "Fatto!"
