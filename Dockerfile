@@ -1,6 +1,6 @@
 FROM alpine
 RUN apk update && apk upgrade
-RUN apk add git ncftp nodejs-npm postgresql-client
+RUN apk add git ncftp nodejs-npm postgresql-client mongodb-tools
 RUN npm install -g redis-dump
 ADD cronjob /etc/crontabs/root
 ADD test /etc/periodic/15min
