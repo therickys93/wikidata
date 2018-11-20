@@ -2,11 +2,19 @@
 
 # set -
 NOW=$(date +"%d_%B_%Y_%H_%M_%S")
-redis-dump -h $REDIS --json > wikiredisdump_$NOW.json
-PGPASSWORD=$POSTGRES_PASSWORD pg_dump -U $POSTGRES_USER -d $POSTGRES_DB -h $POSTGRES > wikipostgresdump_$NOW.sql
-mongodump --host $MONGODB_HOST:$MONGODB_PORT --gzip --archive=wikibot_$NOW.archive
+source ./env
+if [ -n "$REDIS" ]; then
+    redis-dump -h $REDIS --json > wikiredisdump_$NOW.json
+fi
+if [ -n "$POSTGRES" ]; then
+    pg_dump -U $POSTGRES_USER -d $POSTGRES_DB -h $POSTGRES > wikipostgresdump_$NOW.sql
+fi
+if [ -n "$MONGODB" ]; then
+    mongodump --host $MONGODB_HOST:$MONGODB_PORT --gzip --archive=wikibot_$NOW.archive
+fi
 ncftp <<END_OF_SESSION
 open -u $FTP_USERNAME -p $FTP_PASSWORD $FTP_SERVER
+cd backups/
 put wikiredisdump_$NOW.json wikipostgresdump_$NOW.sql wikibot_$NOW.archive
 bye
 END_OF_SESSION
