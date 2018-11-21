@@ -19,3 +19,8 @@ MONGODB_PORT='27017'
 FTP_USERNAME=''
 FTP_PASSWORD=''
 FTP_SERVER=''
+
+# Dropbox configuration
+# Must be !empty for Dropbox upload to work.
+# Remember also to create the access token and paste in the .dropbox_uploader file.
+DROPBOX=''

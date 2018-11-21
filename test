@@ -20,4 +20,9 @@ if [ -n "$FTP_SERVER" ]; then
     bye
 END_OF_SESSION
 fi
+if [ -n "$DROPBOX" ]; then
+    bash dropbox_uploader.sh upload wikiredisdump_$NOW.json wikiredisdump_$NOW.json
+    bash dropbox_uploader.sh upload wikipostgresdump_$NOW.sql wikipostgresdump_$NOW.sql
+    bash dropbox_uploader.sh upload wikibot_$NOW.archive wikibot_$NOW.archive
+fi
 echo "Fatto!"
