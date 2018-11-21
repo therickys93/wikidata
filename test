@@ -12,10 +12,12 @@ fi
 if [ -n "$MONGODB" ]; then
     mongodump --host $MONGODB_HOST:$MONGODB_PORT --gzip --archive=wikibot_$NOW.archive
 fi
-ncftp <<END_OF_SESSION
-open -u $FTP_USERNAME -p $FTP_PASSWORD $FTP_SERVER
-cd backups/
-put wikiredisdump_$NOW.json wikipostgresdump_$NOW.sql wikibot_$NOW.archive
-bye
+if [ -n "$FTP_SERVER" ]; then
+    ncftp <<END_OF_SESSION
+    open -u $FTP_USERNAME -p $FTP_PASSWORD $FTP_SERVER
+    cd backups/
+    put wikiredisdump_$NOW.json wikipostgresdump_$NOW.sql wikibot_$NOW.archive
+    bye
 END_OF_SESSION
+fi
 echo "Fatto!"
