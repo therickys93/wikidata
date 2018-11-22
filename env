@@ -1,0 +1,26 @@
+# Redis configuration
+# if REDIS is set the script will execute redis-dump
+REDIS=''
+
+# Postgres configuration
+# if POSTGRES is set the script will execute pg_dump
+POSTGRES=''
+POSTGRES_USER='postgres'
+POSTGRES_DB='wiki'
+
+# MongoDB configuration
+# if MONGODB is set the script will execute mongodump
+MONGODB=''
+MONGODB_HOST='localhost'
+MONGODB_PORT='27017'
+
+# FTP configuration
+# This values must be set.
+FTP_USERNAME=''
+FTP_PASSWORD=''
+FTP_SERVER=''
+
+# Dropbox configuration
+# Must be !empty for Dropbox upload to work.
+# Remember also to create the access token and paste in the .dropbox_uploader file.
+DROPBOX=''
