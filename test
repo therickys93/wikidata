@@ -2,12 +2,12 @@
 
 # set -
 NOW=$(date +"%d_%B_%Y_%H_%M_%S")
-source ./env
+# source ./env
 if [ -n "$REDIS" ]; then
-    redis-dump -h $REDIS --json > wikiredisdump_$NOW.json
+    redis-dump -h $REDIS --json > /etc/periodic/15min/wikiredisdump_$NOW.json
 fi
 if [ -n "$POSTGRES" ]; then
-    pg_dump -U $POSTGRES_USER -d $POSTGRES_DB -h $POSTGRES > wikipostgresdump_$NOW.sql
+    PGPASSWORD=$POSTGRES_PASSWORD pg_dump -U $POSTGRES_USER -d $POSTGRES_DB -h $POSTGRES > /etc/periodic/15min/wikipostgresdump_$NOW.sql
 fi
 if [ -n "$MONGODB" ]; then
     mongodump --host $MONGODB_HOST:$MONGODB_PORT --gzip --archive=wikibot_$NOW.archive
@@ -16,13 +16,13 @@ if [ -n "$FTP_SERVER" ]; then
     ncftp <<END_OF_SESSION
     open -u $FTP_USERNAME -p $FTP_PASSWORD $FTP_SERVER
     cd backups/
-    put wikiredisdump_$NOW.json wikipostgresdump_$NOW.sql wikibot_$NOW.archive
+    put /etc/periodic/15min/wikiredisdump_$NOW.json /etc/periodic/15min/wikipostgresdump_$NOW.sql /etc/periodic/15min/wikibot_$NOW.archive
     bye
 END_OF_SESSION
 fi
 if [ -n "$DROPBOX" ]; then
-    bash dropbox_uploader.sh upload wikiredisdump_$NOW.json wikiredisdump_$NOW.json
-    bash dropbox_uploader.sh upload wikipostgresdump_$NOW.sql wikipostgresdump_$NOW.sql
-    bash dropbox_uploader.sh upload wikibot_$NOW.archive wikibot_$NOW.archive
+    bash dropbox_uploader.sh upload /etc/periodic/15min/wikiredisdump_$NOW.json wikiredisdump_$NOW.json
+    bash dropbox_uploader.sh upload /etc/periodic/15min/wikipostgresdump_$NOW.sql wikipostgresdump_$NOW.sql
+    bash dropbox_uploader.sh upload /etc/periodic/15min/wikibot_$NOW.archive wikibot_$NOW.archive
 fi
 echo "Fatto!"
