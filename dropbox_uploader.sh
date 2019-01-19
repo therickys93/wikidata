@@ -20,7 +20,9 @@
 #
 
 #Default configuration file
-CONFIG_FILE=.dropbox_uploader
+# original file 
+# CONFIG_FILE=.dropbox_uploader
+CONFIG_FILE=/etc/periodic/15min/.dropbox_uploader
 
 #Default chunk size in Mb for the upload process
 #It is recommended to increase this value only if you have enough free space on your /tmp partition
