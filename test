@@ -21,8 +21,9 @@ if [ -n "$FTP_SERVER" ]; then
 END_OF_SESSION
 fi
 if [ -n "$DROPBOX" ]; then
-    bash dropbox_uploader.sh upload /etc/periodic/15min/wikiredisdump_$NOW.json wikiredisdump_$NOW.json
-    bash dropbox_uploader.sh upload /etc/periodic/15min/wikipostgresdump_$NOW.sql wikipostgresdump_$NOW.sql
-    bash dropbox_uploader.sh upload /etc/periodic/15min/wikibot_$NOW.archive wikibot_$NOW.archive
+    echo "OAUTH_ACCESS_TOKEN=$DROPBOX_ACCESS_TOKEN" > /etc/periodic/15min/.dropbox_uploader
+    bash /etc/periodic/15min/dropbox_uploader.sh upload /etc/periodic/15min/wikiredisdump_$NOW.json wikiredisdump_$NOW.json
+    bash /etc/periodic/15min/dropbox_uploader.sh upload /etc/periodic/15min/wikipostgresdump_$NOW.sql wikipostgresdump_$NOW.sql
+    bash /etc/periodic/15min/dropbox_uploader.sh upload /etc/periodic/15min/wikibot_$NOW.archive wikibot_$NOW.archive
 fi
 echo "Fatto!"

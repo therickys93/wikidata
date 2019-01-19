@@ -24,6 +24,8 @@ services:
             - POSTGRES_USER=postgres
             - POSTGRES_PASSWORD=example
             - POSTGRES_DB=postgres
+            - DROPBOX=dropbox
+            - DROPBOX_ACCESS_TOKEN=<your_token_here>
         networks: 
             - backbone
 
